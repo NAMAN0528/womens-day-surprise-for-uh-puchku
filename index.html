@@ -1,0 +1,196 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Women's Day Surprise</title>
+
+<style>
+
+body{
+margin:0;
+text-align:center;
+font-family:Arial;
+background:linear-gradient(#ff9ecb,#ffffff);
+overflow:hidden;
+}
+
+h1{margin-top:80px;}
+
+button{
+padding:12px 25px;
+font-size:18px;
+margin:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:#ff4da6;
+color:white;
+}
+
+#gift{font-size:70px; cursor:pointer;}
+
+#heart{
+font-size:100px;
+cursor:pointer;
+display:none;
+margin-top:40px;
+}
+
+img{
+width:320px;
+border-radius:20px;
+margin-top:20px;
+animation:zoom 0.6s ease;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+@keyframes zoom{
+from{transform:scale(0.3);}
+to{transform:scale(1);}
+}
+
+.floating{
+position:absolute;
+font-size:25px;
+animation:rise 6s linear infinite;
+}
+
+@keyframes rise{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
+}
+
+#photo{display:none;}
+#choices{display:none;}
+#desc{display:none;}
+#final{display:none; font-size:22px; padding:25px;}
+
+</style>
+</head>
+
+<body>
+
+<h1>Happy Women's Day 🌸</h1>
+
+<p id="tap">Tap for gift 🎁</p>
+
+<div id="gift" onclick="showDesc()">🎁</div>
+
+<div id="desc">
+<p>
+A small interactive Women's Day surprise website made with love for uhh babyygirl!!
+</p>
+</div>
+
+<div id="choices">
+<button onclick="openGift()">Open 💝</button>
+<button onclick="ignoreGift()">Ignore 🙄</button>
+</div>
+
+<p id="angry"></p>
+
+<div id="heart" onclick="startSurprise()">❤️</div>
+
+<div id="photo"></div>
+
+<div id="final">
+<h2>Thankyouuhh babyygirlll 💖</h2>
+<p>
+Out of everyone in this world, I'm really glad I have a bestie like you.
+You make the smallest moments fun, the boring days brighter, and life
+a lot more special just by being you. Your laugh, your kindness, and
+the way you always care about people means so much.
+</p>
+
+<p>
+I'm honestly grateful for all the random talks, jokes, memories,
+and little moments we've shared. They mean more than you know.
+</p>
+
+<h2>Once again Happy Women's Day ❤️❤️</h2>
+</div>
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+let photos=[
+"photo1.jpg.png",
+"photo2.jpg.png",
+"photo3.jpg.png",
+"photo4.jpg.png",
+"photo5.jpg.png",
+"photo6.jpg.png",
+"photo7.jpg.png"
+];
+
+let current=0;
+
+function showDesc(){
+document.getElementById("gift").style.display="none";
+document.getElementById("tap").style.display="none";
+document.getElementById("desc").style.display="block";
+document.getElementById("choices").style.display="block";
+}
+
+function ignoreGift(){
+document.getElementById("angry").innerHTML=
+"No wayyy 😤 you can't ignore this!! You HAVE to open it!!";
+}
+
+function openGift(){
+document.getElementById("choices").style.display="none";
+document.getElementById("angry").style.display="none";
+document.getElementById("heart").style.display="block";
+}
+
+function startSurprise(){
+document.getElementById("heart").style.display="none";
+document.getElementById("music").play();
+floatingHearts();
+}
+
+function floatingHearts(){
+
+let heart=document.createElement("div");
+heart.innerHTML="💖";
+heart.className="floating";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.onclick=function(){showPhoto(); heart.remove();}
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove();},6000);
+
+setTimeout(floatingHearts,1200);
+
+}
+
+function showPhoto(){
+
+if(current < photos.length){
+
+document.getElementById("photo").style.display="block";
+document.getElementById("photo").innerHTML =
+"<img src='"+photos[current]+"'>";
+
+current++;
+
+}else{
+
+document.getElementById("photo").style.display="none";
+document.getElementById("final").style.display="block";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
+```
